@@ -3,7 +3,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RestaurantTest {
@@ -40,6 +44,19 @@ class RestaurantTest {
 
     }
     //<<<<<<<<<<<<<<<<<<<<<<<<<OPEN/CLOSED>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    //>>>>>>>>>>>>>>>>>>>>>>>>>>>ORDER VALUE<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    @Test
+    public void calculate_order_value_if_item_is_added() {
+        restaurant.addToMenu("cake", 100);
+        List<String> orderList = new ArrayList<String>();
+        orderList.add("Vegetable lasagne");
+        orderList.add("cake");
+        orderList.add("Sweet corn soup");
+        int totalOrderValue = restaurant.calculateTotalOrderValue(orderList);
+        assertThat(488, equalTo(totalOrderValue));
+    }
+    //<<<<<<<<<<<<<<<<<<<<<<<ORDER VALUE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>MENU<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     @Test
