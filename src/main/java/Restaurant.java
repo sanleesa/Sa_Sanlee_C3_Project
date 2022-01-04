@@ -60,4 +60,13 @@ public class Restaurant {
     public String getName() {
         return name;
     }
+
+    public int calculateTotalOrderValue(List<String> tempMenu) {
+        int totalOrderValue = 0;
+        for (String items : tempMenu) {
+            Item item = findItemByName(items);
+            totalOrderValue += item.getPrice();
+        }
+        return totalOrderValue;
+    }
 }
